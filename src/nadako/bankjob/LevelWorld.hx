@@ -1,6 +1,5 @@
 package nadako.bankjob;
 
-import com.haxepunk.graphics.Text;
 import com.haxepunk.Sfx;
 import com.haxepunk.utils.Key;
 import com.haxepunk.utils.Input;
@@ -27,8 +26,7 @@ class LevelWorld extends World
     private var putdownSound:Sfx;
 //    private var music:Sfx;
 
-    private var timeText:Text;
-    private var scoreText:Text;
+    private var hud:HUD;
 
     public function new(levelIdx:Int)
     {
@@ -97,29 +95,11 @@ class LevelWorld extends World
         levelTimer.x = 254;
         levelTimer.y = 30;
 
-        var textSize:Int = 22;
-        var textX:Int = 50;
-        var textY:Int = 0;
-
-        var levelText:Text = new Text("LEVEL: " + (levelIdx + 1));
-        levelText.size = textSize;
-        addGraphic(levelText, HXP.BASELAYER, textX, textY);
-
-        timeText = new Text("TIME: " + def.duration);
-        timeText.size = textSize;
-        addGraphic(timeText, HXP.BASELAYER, textX, textY + levelText.height);
-
-        textX = 225;
-
-        scoreText = new Text("SCORE: 0 (TOTAL: 0)");
-        scoreText.size = textSize;
-        addGraphic(scoreText, HXP.BASELAYER, textX, textY);
-        updateScoreText();
-
-        var deathText:Text = new Text("DEATHS: " + Main.totalDeaths);
-        deathText.size = textSize;
-        deathText.color = 0xFF0000;
-        addGraphic(deathText, HXP.BASELAYER, textX + scoreText.width + 20);
+        hud = new HUD();
+        hud.setLevel(levelIdx);
+        hud.setScore(0);
+        hud.updateDeathCount();
+        add(hud);
 
         //        music.loop(0.1);
     }
@@ -138,18 +118,13 @@ class LevelWorld extends World
             player.state = PlayerState.Empty;
             houseTile.count++;
             putdownSound.play();
-            updateScoreText();
+            hud.setScore(houseTile.count);
         }
         else if (playerIndex == lastPlayerIndex && player.state == PlayerState.Empty)
         {
             player.state = PlayerState.Full;
             pickupSound.play();
         }
-    }
-
-    private function updateScoreText():Void
-    {
-        scoreText.text = "SCORE: " + houseTile.count + " (TOTAL: " + (Main.totalScore + houseTile.count) + ")";
     }
 
     private function tryMovePlayer(delta:Int):Void
@@ -204,7 +179,7 @@ class LevelWorld extends World
 
     private function checkTimer():Void
     {
-        timeText.text = "TIME: " + levelTimer.timeLeft;
+        hud.setTime(levelTimer.timeLeft);
 
         if (levelTimer.isFinished)
         {
