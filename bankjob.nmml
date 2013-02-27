@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+    <app file="BankJob" main="nadako.bankjob.Main" />
+    <window width="800" height="480" background="#000000"/>
+    <classpath name="src" />
+    <haxelib name="nme" />
+    <haxelib name="HaxePunk"/>
+
+    <assets path="assets" rename=""/>
+    <assets path="assets/font" rename="font" include="*.ttf" />
+</project>

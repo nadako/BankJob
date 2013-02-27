@@ -1,0 +1,62 @@
+[
+    {
+        "name": "zapper",
+        "images": [
+            "gfx/trap1_idle.png",
+            "gfx/trap1_on1.png",
+            "gfx/trap1_on2.png"
+        ],
+        "states": [
+            {
+                "frames": [0],
+                "duration": 1
+            },
+            {
+                "frames": [1, 2],
+                "duration": 1,
+                "deadly": true
+            }
+        ]
+    },
+
+    {
+        "name": "flame",
+        "images": [
+            "gfx/trap3_idle1.png",
+            "gfx/trap3_idle2.png",
+            "gfx/trap3_on1.png",
+            "gfx/trap3_on2.png"
+        ],
+        "states": [
+            {
+                "frames": [0, 1],
+                "duration": 1
+            },
+            {
+                "frames": [2, 3],
+                "duration": 2,
+                "deadly": true
+            }
+        ]
+    },
+
+    {
+        "name": "grinder",
+        "images": [
+            "gfx/trap2_idle.png",
+            "gfx/trap2_on.png"
+        ],
+        "states": [
+            {
+                "frames": [0],
+                "duration": 1
+            },
+            {
+                "frames": [1],
+                "duration": 0.75,
+                "deadly": true,
+                "blocking": true
+            }
+        ]
+    }
+]
