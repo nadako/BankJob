@@ -1,26 +1,25 @@
 package nadako.bankjob;
 
-import nadako.bankjob.LevelWorld.LevelDef;
 import haxe.Json;
 
-import nme.Assets;
 import com.haxepunk.Engine;
 import com.haxepunk.HXP;
 
+import openfl.Assets;
+
+import nadako.bankjob.LevelWorld.LevelDef;
 import nadako.bankjob.Obstacle.ObstacleDef;
 
 class Main extends Engine
 {
-    public static var obstacles(default, null):Hash<ObstacleDef>;
+    public static var obstacles(default, null):Map<String, ObstacleDef>;
     public static var levels(default, null):Array<LevelDef>;
     public static var totalScore:Int;
     public static var totalDeaths:Int;
 
-    public function new()
+    override function init()
     {
-        super();
-
-        obstacles = new Hash();
+        obstacles = new Map();
         var defs:Array<ObstacleDef> = Json.parse(Assets.getText("defs/obstacles.json"));
         for (obstacleDef in defs)
         {

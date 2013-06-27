@@ -1,6 +1,7 @@
 package nadako.bankjob;
 
-import nme.text.TextFormatAlign;
+import flash.text.TextFormatAlign;
+
 import com.haxepunk.graphics.Text;
 import com.haxepunk.HXP;
 import com.haxepunk.utils.Key;

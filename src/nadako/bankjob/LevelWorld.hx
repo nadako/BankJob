@@ -14,7 +14,7 @@ class LevelWorld extends World
 {
     private var levelIdx:Int;
     private var def:LevelDef;
-    private var obstacleMap:IntHash<Obstacle>;
+    private var obstacleMap:Map<Int, Obstacle>;
     private var emptyImage:Image;
     private var houseTile:HouseTile;
     private var player:Player;
@@ -62,7 +62,7 @@ class LevelWorld extends World
         houseTile.y = tileY;
         tileX += 100;
 
-        obstacleMap = new IntHash();
+        obstacleMap = new Map();
         for (i in 0...def.obstacles.length)
         {
             var obstacleName:String = def.obstacles[i];

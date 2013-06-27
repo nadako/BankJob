@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
     <app file="BankJob" main="nadako.bankjob.Main" />
+
     <window width="800" height="480" background="#000000"/>
-    <classpath name="src" />
-    <haxelib name="nme" />
+
+    <source path="src" />
+
+    <haxelib name="openfl" />
     <haxelib name="HaxePunk"/>
 
     <assets path="assets" rename=""/>
