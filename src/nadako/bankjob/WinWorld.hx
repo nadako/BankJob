@@ -38,12 +38,12 @@ class WinWorld extends World
 
         var scoreText:Text = new Text("SCORE: " + score + " (TOTAL: " + Main.totalScore + ")");
         scoreText.size = 30;
-        addGraphic(scoreText, HXP.BASELAYER, (bgImage.width - scoreText.width) / 2, 50);
+        addGraphic(scoreText, 0, (bgImage.width - scoreText.width) / 2, 50);
 
         if (score == 0)
         {
             var warnText:Text = new Text("next time try to actually do\nthe bank job, loser", 0, 0, 0, 0, {align: TextFormatAlign.CENTER, size: 30, color: 0xFF0000});
-            addGraphic(warnText, HXP.BASELAYER, (bgImage.width - warnText.width) / 2, 50 + scoreText.height);
+            addGraphic(warnText, 0, (bgImage.width - warnText.width) / 2, 50 + scoreText.height);
         }
 
     }
@@ -57,6 +57,6 @@ class WinWorld extends World
             return;
 
         if (Input.mousePressed || Input.pressed(Key.ANY))
-            HXP.world = nextWorld;
+            HXP.scene = nextWorld;
     }
 }

@@ -38,6 +38,6 @@ class DeathWorld extends World
             return;
 
         if (Input.mousePressed || Input.pressed(Key.ANY))
-            HXP.world = levelWorld;
+            HXP.scene = levelWorld;
     }
 }

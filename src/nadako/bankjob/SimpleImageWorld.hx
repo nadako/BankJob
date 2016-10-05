@@ -21,6 +21,6 @@ class SimpleImageWorld extends World
     {
         super.update();
         if (nextWorld != null && (Input.mousePressed || Input.pressed(Key.ANY)))
-            HXP.world = nextWorld;
+            HXP.scene = nextWorld;
     }
 }

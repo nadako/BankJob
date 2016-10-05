@@ -38,6 +38,6 @@ class Main extends Engine
         var playWorld = new LevelWorld(0);
         var tutorialWorld = new SimpleImageWorld("gfx/tutorial.png", playWorld);
         var mainMenuWorld = new SimpleImageWorld("gfx/game_start.png", tutorialWorld);
-        HXP.world = mainMenuWorld;
+        HXP.scene = mainMenuWorld;
     }
 }

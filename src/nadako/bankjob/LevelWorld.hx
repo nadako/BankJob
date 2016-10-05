@@ -4,7 +4,6 @@ import com.haxepunk.Sfx;
 import com.haxepunk.utils.Key;
 import com.haxepunk.utils.Input;
 import com.haxepunk.HXP;
-import com.haxepunk.Entity;
 import com.haxepunk.graphics.Image;
 import com.haxepunk.World;
 
@@ -77,12 +76,12 @@ class LevelWorld extends World
             }
             else
             {
-                addGraphic(emptyImage, HXP.BASELAYER, tileX, tileY);
+                addGraphic(emptyImage, 0, tileX, tileY);
             }
             tileX += 100;
         }
 
-        addGraphic(new Image("gfx/bank_cash_tile.png"), HXP.BASELAYER, tileX, tileY);
+        addGraphic(new Image("gfx/bank_cash_tile.png"), 0, tileX, tileY);
 
         playerIndex = 0;
 
@@ -173,7 +172,7 @@ class LevelWorld extends World
         if (obstacle != null && obstacle.isDeadly)
         {
             Main.totalDeaths++;
-            HXP.world = new DeathWorld(this);
+            HXP.scene = new DeathWorld(this);
         }
     }
 
@@ -188,15 +187,15 @@ class LevelWorld extends World
                 if (houseTile.count > 0)
                 {
                     Main.totalScore += houseTile.count;
-                    HXP.world = new WinWorld(new LevelWorld(levelIdx + 1), houseTile.count);
+                    HXP.scene = new WinWorld(new LevelWorld(levelIdx + 1), houseTile.count);
                 }
                 else
                 {
-                    HXP.world = new WinWorld(this, houseTile.count);
+                    HXP.scene = new WinWorld(this, houseTile.count);
                 }
             }
             else
-                HXP.world = new SimpleImageWorld("gfx/busted.png", this);
+                HXP.scene = new SimpleImageWorld("gfx/busted.png", this);
         }
     }
 
