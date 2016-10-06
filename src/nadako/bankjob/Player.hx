@@ -5,7 +5,7 @@ import com.haxepunk.Entity;
 
 class Player extends Entity
 {
-    public var state(default, set_state):PlayerState;
+    public var state(default, set):PlayerState;
 
     var emptyImage:Image;
     var fullImage:Image;

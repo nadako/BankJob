@@ -13,8 +13,8 @@ class Obstacle extends Entity
     var animTimer:Float;
     var stateTimer:Float;
 
-    public var isBlocking(get_isBlocking, never):Bool;
-    public var isDeadly(get_isDeadly, never):Bool;
+    public var isBlocking(get, never):Bool;
+    public var isDeadly(get, never):Bool;
 
     public function new(def:ObstacleDef)
     {

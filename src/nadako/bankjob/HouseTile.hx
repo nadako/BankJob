@@ -5,7 +5,7 @@ import com.haxepunk.Entity;
 
 class HouseTile extends Entity
 {
-    public var count(default, set_count):Int;
+    public var count(default, set):Int;
 
     var images:Array<Image>;
 

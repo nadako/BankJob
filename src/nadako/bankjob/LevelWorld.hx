@@ -148,7 +148,7 @@ class LevelWorld extends World
         positionPlayer();
     }
 
-    var lastPlayerIndex(get_lastPlayerIndex, never):Int;
+    var lastPlayerIndex(get, never):Int;
 
     inline function get_lastPlayerIndex():Int
     {

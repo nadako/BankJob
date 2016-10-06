@@ -39,14 +39,14 @@ class LevelTimer extends Entity
         }
     }
 
-    public var isFinished(get_isFinished, never):Bool;
+    public var isFinished(get, never):Bool;
 
     inline function get_isFinished():Bool
     {
         return timer > duration;
     }
 
-    public var timeLeft(get_timeLeft, never):Int;
+    public var timeLeft(get, never):Int;
 
     inline function get_timeLeft():Int
     {
