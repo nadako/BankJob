@@ -5,10 +5,10 @@ import com.haxepunk.Entity;
 
 class HUD extends Entity
 {
-    private var levelText:Text;
-    private var timeText:Text;
-    private var scoreText:Text;
-    private var deathCountText:Text;
+    var levelText:Text;
+    var timeText:Text;
+    var scoreText:Text;
+    var deathCountText:Text;
 
     public function new()
     {

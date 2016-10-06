@@ -7,8 +7,8 @@ class Player extends Entity
 {
     public var state(default, set_state):PlayerState;
 
-    private var emptyImage:Image;
-    private var fullImage:Image;
+    var emptyImage:Image;
+    var fullImage:Image;
 
     public function new()
     {
@@ -18,7 +18,7 @@ class Player extends Entity
         set_state(Empty);
     }
 
-    private function set_state(value:PlayerState):PlayerState
+    function set_state(value:PlayerState):PlayerState
     {
         if (state != value)
         {

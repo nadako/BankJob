@@ -8,7 +8,7 @@ import com.haxepunk.World;
 
 class SimpleImageWorld extends World
 {
-    private var nextWorld:World;
+    var nextWorld:World;
 
     public function new(path:String, nextWorld:World = null)
     {

@@ -7,7 +7,7 @@ class HouseTile extends Entity
 {
     public var count(default, set_count):Int;
 
-    private var images:Array<Image>;
+    var images:Array<Image>;
 
     public function new(paths:Array<String>)
     {
@@ -22,7 +22,7 @@ class HouseTile extends Entity
         set_count(0);
     }
 
-    private function set_count(value:Int):Int
+    function set_count(value:Int):Int
     {
         count = value;
 

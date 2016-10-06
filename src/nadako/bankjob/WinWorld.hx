@@ -12,13 +12,13 @@ import com.haxepunk.World;
 
 class WinWorld extends World
 {
-    private static inline var DELAY:Float = 0.75;
+    static inline var DELAY:Float = 0.75;
 
-    private var nextWorld:World;
-    private var winSound:Sfx;
-    private var delayTimer:Float;
-    private var score:Int;
-    private var bgImage:Image;
+    var nextWorld:World;
+    var winSound:Sfx;
+    var delayTimer:Float;
+    var score:Int;
+    var bgImage:Image;
 
     public function new(nextWorld:World, score:Int)
     {

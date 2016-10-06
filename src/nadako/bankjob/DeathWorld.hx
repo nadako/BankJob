@@ -9,11 +9,11 @@ import com.haxepunk.World;
 
 class DeathWorld extends World
 {
-    private static inline var DELAY:Float = 0.75;
+    static inline var DELAY:Float = 0.75;
 
-    private var levelWorld:World;
-    private var deathSound:Sfx;
-    private var delayTimer:Float;
+    var levelWorld:World;
+    var deathSound:Sfx;
+    var delayTimer:Float;
 
     public function new(levelWorld:World)
     {

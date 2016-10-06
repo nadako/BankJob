@@ -7,10 +7,10 @@ import com.haxepunk.Entity;
 
 class LevelTimer extends Entity
 {
-    private var duration:Float;
-    private var timer:Float;
-    private var barImage:Image;
-    private var carImage:Spritemap;
+    var duration:Float;
+    var timer:Float;
+    var barImage:Image;
+    var carImage:Spritemap;
 
     public function new(duration:Float)
     {
@@ -41,14 +41,14 @@ class LevelTimer extends Entity
 
     public var isFinished(get_isFinished, never):Bool;
 
-    private inline function get_isFinished():Bool
+    inline function get_isFinished():Bool
     {
         return timer > duration;
     }
 
     public var timeLeft(get_timeLeft, never):Int;
 
-    private inline function get_timeLeft():Int
+    inline function get_timeLeft():Int
     {
         return Math.ceil(duration - timer);
     }

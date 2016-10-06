@@ -6,12 +6,12 @@ import com.haxepunk.Entity;
 
 class Obstacle extends Entity
 {
-    private var images:Array<Image>;
-    private var def:ObstacleDef;
-    private var currentState:Int;
-    private var currentFrame:Int;
-    private var animTimer:Float;
-    private var stateTimer:Float;
+    var images:Array<Image>;
+    var def:ObstacleDef;
+    var currentState:Int;
+    var currentFrame:Int;
+    var animTimer:Float;
+    var stateTimer:Float;
 
     public var isBlocking(get_isBlocking, never):Bool;
     public var isDeadly(get_isDeadly, never):Bool;
@@ -65,12 +65,12 @@ class Obstacle extends Entity
         graphic = images[currentStateDef.frames[currentFrame]];
     }
 
-    private inline function get_isBlocking():Bool
+    inline function get_isBlocking():Bool
     {
         return def.states[currentState].blocking;
     }
 
-    private inline function get_isDeadly():Bool
+    inline function get_isDeadly():Bool
     {
         return def.states[currentState].deadly;
     }

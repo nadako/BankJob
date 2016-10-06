@@ -11,21 +11,21 @@ import nadako.bankjob.Player.PlayerState;
 
 class LevelWorld extends World
 {
-    private var levelIdx:Int;
-    private var def:LevelDef;
-    private var obstacleMap:Map<Int, Obstacle>;
-    private var emptyImage:Image;
-    private var houseTile:HouseTile;
-    private var player:Player;
-    private var playerIndex:Int;
-    private var levelTimer:LevelTimer;
+    var levelIdx:Int;
+    var def:LevelDef;
+    var obstacleMap:Map<Int, Obstacle>;
+    var emptyImage:Image;
+    var houseTile:HouseTile;
+    var player:Player;
+    var playerIndex:Int;
+    var levelTimer:LevelTimer;
 
-    private var stepSound:Sfx;
-    private var pickupSound:Sfx;
-    private var putdownSound:Sfx;
-//    private var music:Sfx;
+    var stepSound:Sfx;
+    var pickupSound:Sfx;
+    var putdownSound:Sfx;
+//    var music:Sfx;
 
-    private var hud:HUD;
+    var hud:HUD;
 
     public function new(levelIdx:Int)
     {
@@ -108,7 +108,7 @@ class LevelWorld extends World
 //        music.stop();
     }
 
-    private function positionPlayer():Void
+    function positionPlayer():Void
     {
         player.x = playerIndex * 100;
 
@@ -126,7 +126,7 @@ class LevelWorld extends World
         }
     }
 
-    private function tryMovePlayer(delta:Int):Void
+    function tryMovePlayer(delta:Int):Void
     {
         if (delta == 0)
             return;
@@ -148,14 +148,14 @@ class LevelWorld extends World
         positionPlayer();
     }
 
-    private var lastPlayerIndex(get_lastPlayerIndex, never):Int;
+    var lastPlayerIndex(get_lastPlayerIndex, never):Int;
 
-    private inline function get_lastPlayerIndex():Int
+    inline function get_lastPlayerIndex():Int
     {
         return def.obstacles.length + 1;
     }
 
-    private function handleInput():Void
+    function handleInput():Void
     {
         if (Input.pressed("left"))
             tryMovePlayer(-1);
@@ -163,7 +163,7 @@ class LevelWorld extends World
             tryMovePlayer(1);
     }
 
-    private function checkDeadly():Void
+    function checkDeadly():Void
     {
         if (playerIndex == 0 || playerIndex == lastPlayerIndex)
             return;
@@ -176,7 +176,7 @@ class LevelWorld extends World
         }
     }
 
-    private function checkTimer():Void
+    function checkTimer():Void
     {
         hud.setTime(levelTimer.timeLeft);
 
