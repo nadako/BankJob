@@ -1,0 +1,10 @@
+-cp src
+-lib heaps
+-D resourcesPath=assets
+-main nadako.bankjob.Main
+-dce full
+-D analyzer-optimize
+# -debug
+-js main.js
+# -hl main.hl
+# -lib hldx

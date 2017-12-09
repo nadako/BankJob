@@ -1,34 +1,23 @@
 package nadako.bankjob;
 
-import com.haxepunk.graphics.Image;
-import com.haxepunk.Entity;
+import h2d.Tile;
+import h2d.Bitmap;
 
-class HouseTile extends Entity
-{
+class HouseTile extends Bitmap {
     public var count(default, set):Int;
 
-    var images:Array<Image>;
+    var images:Array<Tile>;
 
-    public function new(paths:Array<String>)
-    {
-        super();
-
-        images = [];
-        for (path in paths)
-        {
-            images.push(new Image(path));
-        }
-
+    public function new(images:Array<Tile>, parent:h2d.Sprite) {
+        super(null, parent);
+        this.images = images;
         set_count(0);
     }
 
-    function set_count(value:Int):Int
-    {
+    function set_count(value:Int):Int {
         count = value;
-
-        var imageIdx:Int = (value < images.length) ? value : images.length - 1;
-        graphic = images[imageIdx];
-
+        var imageIdx = (value < images.length) ? value : images.length - 1;
+        tile = images[imageIdx];
         return value;
     }
 }

@@ -1,26 +1,18 @@
 package nadako.bankjob;
 
-import com.haxepunk.HXP;
-import com.haxepunk.utils.Key;
-import com.haxepunk.utils.Input;
-import com.haxepunk.graphics.Image;
-import com.haxepunk.World;
+import hxd.Key;
 
-class SimpleImageWorld extends World
-{
-    var nextWorld:World;
+class SimpleImageWorld extends Scene {
+    var nextWorld:Scene;
 
-    public function new(path:String, nextWorld:World = null)
-    {
+    public function new(tile:h2d.Tile, nextWorld:Scene = null) {
         super();
         this.nextWorld = nextWorld;
-        addGraphic(new Image(path));
+        new h2d.Bitmap(tile, this);
     }
 
-    override public function update():Void
-    {
-        super.update();
-        if (nextWorld != null && (Input.mousePressed || Input.pressed(Key.ANY)))
-            HXP.scene = nextWorld;
+    override function update(dt) {
+        if (nextWorld != null && (Key.isPressed(Key.MOUSE_LEFT) || Key.isPressed(Key.SPACE)))
+            Main.scene = nextWorld;
     }
 }

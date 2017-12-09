@@ -1,12 +1,9 @@
 package nadako.bankjob;
 
-import com.haxepunk.HXP;
-import com.haxepunk.graphics.Image;
-import com.haxepunk.Entity;
+import h2d.Tile;
 
-class Obstacle extends Entity
-{
-    var images:Array<Image>;
+class Obstacle extends h2d.Bitmap {
+    var images:Array<Tile>;
     var def:ObstacleDef;
     var currentState:Int;
     var currentFrame:Int;
@@ -16,16 +13,13 @@ class Obstacle extends Entity
     public var isBlocking(get, never):Bool;
     public var isDeadly(get, never):Bool;
 
-    public function new(def:ObstacleDef)
-    {
-        super();
-
+    public function new(def:ObstacleDef, parent:h2d.Sprite) {
+        super(null, parent);
         this.def = def;
 
         images = [];
-        for (path in def.images)
-        {
-            images.push(new Image(path));
+        for (path in def.images) {
+            images.push(hxd.Res.load(path).toTile());
         }
 
         currentState = 0;
@@ -34,27 +28,25 @@ class Obstacle extends Entity
         stateTimer = 0;
     }
 
-    override public function update():Void
-    {
-        var currentStateDef:ObstacleStateDef = def.states[currentState];
+    public function update(dt) {
+        var currentStateDef = def.states[currentState];
 
         // cycle states
-        stateTimer += HXP.elapsed;
+        stateTimer += dt;
 
-        while (stateTimer > currentStateDef.duration)
-        {
+        while (stateTimer > currentStateDef.duration) {
             stateTimer -= currentStateDef.duration;
             currentState++;
             if (currentState == def.states.length)
                 currentState = 0;
             currentStateDef = def.states[currentState];
+            currentFrame = 0;
         }
 
         // cycle animations
-        animTimer += 2 * HXP.elapsed;
+        animTimer += 2 * dt;
 
-        while (animTimer >= 1)
-        {
+        while (animTimer >= 1) {
             animTimer--;
             currentFrame++;
             if (currentFrame == currentStateDef.frames.length)
@@ -62,29 +54,25 @@ class Obstacle extends Entity
         }
 
         // update graphics
-        graphic = images[currentStateDef.frames[currentFrame]];
+        tile = images[currentStateDef.frames[currentFrame]];
     }
 
-    inline function get_isBlocking():Bool
-    {
+    inline function get_isBlocking():Bool {
         return def.states[currentState].blocking;
     }
 
-    inline function get_isDeadly():Bool
-    {
+    inline function get_isDeadly():Bool {
         return def.states[currentState].deadly;
     }
 }
 
-typedef ObstacleDef =
-{
+typedef ObstacleDef = {
     var name:String;
     var images:Array<String>;
     var states:Array<ObstacleStateDef>;
 }
 
-typedef ObstacleStateDef =
-{
+typedef ObstacleStateDef = {
     var duration:Float;
     var frames:Array<Int>;
     var deadly:Bool;

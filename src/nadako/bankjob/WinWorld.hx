@@ -1,62 +1,47 @@
 package nadako.bankjob;
 
-import flash.text.TextFormatAlign;
+import hxd.Key;
+import h2d.Text;
 
-import com.haxepunk.graphics.Text;
-import com.haxepunk.HXP;
-import com.haxepunk.utils.Key;
-import com.haxepunk.utils.Input;
-import com.haxepunk.Sfx;
-import com.haxepunk.graphics.Image;
-import com.haxepunk.World;
+class WinWorld extends Scene {
+    static inline var DELAY = 0.75;
 
-class WinWorld extends World
-{
-    static inline var DELAY:Float = 0.75;
-
-    var nextWorld:World;
-    var winSound:Sfx;
+    var nextWorld:Scene;
+    var winSound:hxd.res.Sound;
     var delayTimer:Float;
     var score:Int;
-    var bgImage:Image;
+    var bgImage:h2d.Bitmap;
 
-    public function new(nextWorld:World, score:Int)
-    {
+    public function new(nextWorld, score) {
         super();
         this.nextWorld = nextWorld;
         this.score = score;
-        winSound = new Sfx("audio/win.wav");
-
-        bgImage = new Image("gfx/win.png");
-        addGraphic(bgImage);
+        winSound = hxd.Res.audio.win;
+        bgImage = new h2d.Bitmap(hxd.Res.gfx.win.toTile(), this);
     }
 
-    override public function begin()
-    {
+    override function begin() {
         winSound.play();
         delayTimer = 0;
 
-        var scoreText:Text = new Text("SCORE: " + score + " (TOTAL: " + Main.totalScore + ")");
-        scoreText.size = 30;
-        addGraphic(scoreText, 0, (bgImage.width - scoreText.width) / 2, 50);
+        var scoreText = new Text(Main.defaultFont30, this);
+        scoreText.text = "SCORE: " + score + " (TOTAL: " + Main.totalScore + ")";
+        scoreText.setPos((bgImage.tile.width - scoreText.textWidth) / 2, 50);
 
-        if (score == 0)
-        {
-            var warnText:Text = new Text("next time try to actually do\nthe bank job, loser", 0, 0, 0, 0, {align: TextFormatAlign.CENTER, size: 30, color: 0xFF0000});
-            addGraphic(warnText, 0, (bgImage.width - warnText.width) / 2, 50 + scoreText.height);
+        if (score == 0) {
+            var warnText = new Text(Main.defaultFont30, this);
+            warnText.text = "next time try to actually do\nthe bank job, loser";
+            warnText.textColor = 0xFF0000;
+            warnText.setPos((bgImage.tile.width - warnText.textWidth) / 2, 50 + scoreText.textHeight);
         }
-
     }
 
-    override public function update()
-    {
-        super.update();
-
-        delayTimer += HXP.elapsed;
+    override public function update(dt) {
+        delayTimer += dt;
         if (delayTimer < DELAY)
             return;
 
-        if (Input.mousePressed || Input.pressed(Key.ANY))
-            HXP.scene = nextWorld;
+        if (Key.isPressed(Key.MOUSE_LEFT) || Key.isPressed(Key.SPACE))
+            Main.scene = nextWorld;
     }
 }

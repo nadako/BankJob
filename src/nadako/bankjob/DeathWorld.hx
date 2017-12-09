@@ -1,43 +1,33 @@
 package nadako.bankjob;
 
-import com.haxepunk.HXP;
-import com.haxepunk.utils.Key;
-import com.haxepunk.utils.Input;
-import com.haxepunk.Sfx;
-import com.haxepunk.graphics.Image;
-import com.haxepunk.World;
+import hxd.Key;
+import hxd.res.Sound;
 
-class DeathWorld extends World
-{
-    static inline var DELAY:Float = 0.75;
+class DeathWorld extends Scene {
+    static inline var DELAY = 0.75;
 
-    var levelWorld:World;
-    var deathSound:Sfx;
+    var levelWorld:Scene;
+    var deathSound:Sound;
     var delayTimer:Float;
 
-    public function new(levelWorld:World)
-    {
+    public function new(levelWorld:Scene) {
         super();
         this.levelWorld = levelWorld;
-        deathSound = new Sfx("audio/death.wav");
-        addGraphic(new Image("gfx/dead.png"));
+        deathSound = hxd.Res.audio.death;
+        new h2d.Bitmap(hxd.Res.gfx.dead.toTile(), this);
     }
 
-    override public function begin()
-    {
+    override public function begin() {
         deathSound.play();
         delayTimer = 0;
     }
 
-    override public function update()
-    {
-        super.update();
-
-        delayTimer += HXP.elapsed;
+    override public function update(dt) {
+        delayTimer += dt;
         if (delayTimer < DELAY)
             return;
 
-        if (Input.mousePressed || Input.pressed(Key.ANY))
-            HXP.scene = levelWorld;
+        if (Key.isPressed(Key.MOUSE_LEFT) || Key.isPressed(Key.SPACE))
+            Main.scene = levelWorld;
     }
 }
